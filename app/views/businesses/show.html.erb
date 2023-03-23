@@ -1,8 +1,8 @@
 <%= render Businesses::OpenGraphTagsComponent.new(business: @business) %>
 
-<div class="md:mt-16 pb-8">
-  <div class="bg-white shadow overflow-hidden sm:rounded-lg max-w-3xl mx-auto px-4 py-8 sm:px-6">
-    <div class="px-4 sm:px-6 md:flex md:items-center md:justify-between md:space-x-5">
+<%= render Shared::Page::FullWidthComponent.new(margin_top: "mt-16") do %>
+  <%= render Shared::Card::Component.new do |card| %>
+    <%= card.header do %>
       <div class="flex items-center space-x-5">
         <div class="hidden sm:block flex-shrink-0">
           <div class="relative">
@@ -19,9 +19,9 @@
       <div class="mt-6 flex flex-col-reverse justify-stretch space-y-4 space-y-reverse sm:flex-row-reverse sm:justify-end sm:space-x-reverse sm:space-y-0 sm:space-x-3 md:mt-0 md:flex-row md:space-x-3">
         <%= render Businesses::PrimaryActionComponent.new(@business, user: current_user) %>
       </div>
-    </div>
+    <% end %>
 
-    <div class="mt-8 md:mt-12 gap-6 px-6">
+    <%= card.body do %>
       <div class="space-y-6 lg:col-start-1 lg:col-span-2">
         <section>
           <div class="max-w-prose mx-auto">
@@ -33,8 +33,8 @@
           <%= render Businesses::AdminComponent.new(@business, user: current_user) %>
         </section>
       </div>
-    </div>
-  </div>
-</div>
+    <% end %>
+  <% end %>
+<% end %>
 
 <%= render Businesses::SubscriptionsComponent.new(@business, user: current_user) %>
